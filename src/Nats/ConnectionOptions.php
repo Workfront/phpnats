@@ -27,6 +27,12 @@ class ConnectionOptions
     private $port = 4222;
 
     /**
+     * JWT to connect
+     * @var string|null
+     */
+    private $JWT = null;
+
+    /**
      * Username to connect.
      *
      * @var string
@@ -143,6 +149,9 @@ class ConnectionOptions
         if (empty($this->user) === false) {
             $a['user'] = $this->user;
         }
+        if (empty($this->JWT) === false) {
+            $a['JWT'] = $this->JWT;
+        }
         if (empty($this->pass) === false) {
             $a['pass'] = $this->pass;
         }
@@ -211,6 +220,21 @@ class ConnectionOptions
         return $this->user;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getJWT()
+    {
+        return $this->JWT;
+    }
+
+    /**
+     * @param string|null $JWT
+     */
+    public function setJWT(string $JWT)
+    {
+        $this->JWT = $JWT;
+    }
 
     /**
      * Set user.
@@ -434,7 +458,7 @@ class ConnectionOptions
      */
     protected function initialize($options)
     {
-        if (is_iterable($options)) {
+        if (!is_iterable($options)) {
             throw new Exception('The $options argument must be iterable!');
         }
         foreach ($options as $key => $value) {

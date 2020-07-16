@@ -1,5 +1,5 @@
 {
-    "name": "workfront/nats",
+    "name": "benrogmans/nats",
     "description": "A nats.io client in PHP",
     "type": "library",
     "minimum-stability": "dev",
@@ -43,6 +43,10 @@
             "email": "irekkubicki@workfront.com",
             "homepage": "http://www.workfront.com",
             "role": "Software Principal Engineer"
+        },
+        {
+            "name": "Ben Rogmans",
+            "email": "ben@rogmansmedia.nl"
         }
     ],
     "autoload": {
