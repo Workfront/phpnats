@@ -376,7 +376,7 @@ class Connection
 
         if (count($parts) === 5) {
             $length  = trim($parts[4]);
-            $subject = $parts[3];
+            $subject = $parts[1];
         } elseif (count($parts) === 4) {
             $length  = trim($parts[3]);
             $subject = $parts[1];
