@@ -25,6 +25,13 @@ class Message
     public $body;
 
     /**
+     * Message Inbox
+     *
+     * @var string|null
+     */
+    private $inbox = null;
+
+    /**
      * Message Ssid.
      *
      * @var string
@@ -47,10 +54,11 @@ class Message
      * @param string $sid Message Sid.
      * @param Connection $conn Message Connection.
      */
-    public function __construct($subject, $body, $sid, Connection $conn)
+    public function __construct($subject, $body, $sid, Connection $conn, $inbox = null)
     {
         $this->setSubject($subject);
         $this->setBody($body);
+        $this->setInbox($inbox);
         $this->setSid($sid);
         $this->setConn($conn);
     }
@@ -98,6 +106,22 @@ class Message
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInbox(): ?string
+    {
+        return $this->inbox;
+    }
+
+    /**
+     * @param string|null $inbox
+     */
+    public function setInbox(?string $inbox): void
+    {
+        $this->inbox = $inbox;
     }
 
     /**
@@ -163,7 +187,7 @@ class Message
     public function reply($body)
     {
         $this->conn->publish(
-            $this->subject,
+            $this->inbox,
             $body
         );
     }

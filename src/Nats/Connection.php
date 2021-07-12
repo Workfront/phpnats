@@ -371,19 +371,21 @@ class Connection
     {
         $parts   = explode(' ', $line);
         $subject = null;
+        $inbox = null;
         $length  = trim($parts[3]);
         $sid     = $parts[2];
 
         if (count($parts) === 5) {
             $length  = trim($parts[4]);
-            $subject = $parts[3];
+            $subject = $parts[1];
+            $inbox = $parts[3];
         } elseif (count($parts) === 4) {
             $length  = trim($parts[3]);
             $subject = $parts[1];
         }
 
         $payload = $this->receive($length);
-        $msg     = new Message($subject, $payload, $sid, $this);
+        $msg     = new Message($subject, $payload, $sid, $this, $inbox);
 
         if (isset($this->subscriptions[$sid]) === false) {
             throw Exception::forSubscriptionNotFound($sid);
