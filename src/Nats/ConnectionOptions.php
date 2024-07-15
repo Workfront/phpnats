@@ -124,7 +124,7 @@ class ConnectionOptions
      */
     public function getAddress()
     {
-        return 'tcp://'.$this->host.':'.$this->port;
+        return 'tcp://' . $this->host . ':' . $this->port;
     }
 
     /**
@@ -135,7 +135,7 @@ class ConnectionOptions
     public function __toString()
     {
         $a = [
-            'lang'=> $this->lang,
+            'lang' => $this->lang,
             'version' => $this->version,
             'verbose' => $this->verbose,
             'pedantic' => $this->pedantic,
@@ -434,7 +434,7 @@ class ConnectionOptions
      */
     protected function initialize($options)
     {
-        if (is_iterable($options)) {
+        if (!is_iterable($options)) {
             throw new Exception('The $options argument must be iterable!');
         }
         foreach ($options as $key => $value) {
